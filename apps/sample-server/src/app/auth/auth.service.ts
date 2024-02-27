@@ -3,6 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AuthService {
     sayAuth(){
-        return {message: 'Auth'}
+        return {message: 'auth'}
     }
 }
