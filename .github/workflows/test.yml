@@ -9,6 +9,7 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    environment: Docker
     steps:
       - uses: actions/checkout@v4
         with:
