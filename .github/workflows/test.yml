@@ -34,4 +34,4 @@ jobs:
       - name: Test
         run: npx nx test sample-server
       - name: Build images
-        run: npx nx affected --base=origin/master --head=$NX_HEAD --target=container --parallel=2
+        run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=container --parallel=2
