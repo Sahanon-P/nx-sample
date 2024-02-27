@@ -22,42 +22,42 @@
         "production": {
           "buildTarget": "sample-server:build:production"
         }
-      },
-      "container": {
-        "executor": "@nx-tools/nx-container:build",
-        "dependsOn": [
-          "build"
+      }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "engine": "docker",
+        "platforms": [
+          "linux/amd64"
         ],
-        "options": {
-          "engine": "docker",
-          "platforms": [
-            "linux/amd64"
+        "push": true,
+        "metadata": {
+          "images": [
+            "pazcalb/sample-server"
           ],
-          "push": true,
-          "metadata": {
-            "images": [
-              "pazcalb/sample-server"
-            ],
-            "load": true,
-            "tags": [
-              "type=schedule",
-              "type=ref,event=branch",
-              "type=ref,event=tag",
-              "type=ref,event=pr",
-              "type=match,pattern=/sample-server-(\\d+\\.\\d+\\.\\d+)(?!-)/i,group=1",
-              "type=match,pattern=/sample-server-(\\d+\\.\\d+)\\.\\d+(?!-)/i,group=1",
-              "type=match,pattern=/sample-server-(\\d+)\\.\\d+\\.\\d+(?!-)/i,group=1",
-              "type=sha,prefix=sha-"
-            ]
-          }
+          "load": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=match,pattern=/sample-server-(\\d+\\.\\d+\\.\\d+)(?!-)/i,group=1",
+            "type=match,pattern=/sample-server-(\\d+\\.\\d+)\\.\\d+(?!-)/i,group=1",
+            "type=match,pattern=/sample-server-(\\d+)\\.\\d+\\.\\d+(?!-)/i,group=1",
+            "type=sha,prefix=sha-"
+          ]
         }
-      },
-      "version": {
-        "executor": "@jscutlery/semver:version",
-        "options": {
-          "preset": "angular",
-          "commitMessageFormat": "release({projectName}): 🎸 cut release to {version}"
-        }
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular",
+        "commitMessageFormat": "release({projectName}): 🎸 cut release to {version}"
       }
     }
   },
