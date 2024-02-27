@@ -21,6 +21,6 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
       - name: Serve Server
-        run:  npx nx affected --base=origin/master --head=$NX_HEAD --target=serve
+        run:  npx nx serve sample-server
       - name: Test
-        run: npx nx affected --base=origin/master --head=$NX_HEAD --target=test
+        run: npx nx test sample-server-e2e
