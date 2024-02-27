@@ -20,7 +20,5 @@ jobs:
         run: yarn install
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
-      - name: Serve Server
-        run:  npx nx serve sample-server
       - name: Test
-        run: npx nx test sample-server-e2e
+        run: npx nx test sample-server
