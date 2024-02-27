@@ -1,0 +1,24 @@
+{
+  "name": "sample-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/sample-server/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "sample-server:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "sample-server:build:development"
+        },
+        "production": {
+          "buildTarget": "sample-server:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
