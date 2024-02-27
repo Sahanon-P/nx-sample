@@ -4,21 +4,34 @@ on:
     branches:
       # Change this if your primary branch is not main
       - master
+      - container
 
 jobs:
   main:
     runs-on: ubuntu-latest
+    environment: 
+      name: Docker
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ vars.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
       - uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'yarn'
+      
       - name: Install dependencies
         run: yarn install
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
       - name: Test
         run: npx nx test sample-server
+      - name: Build images
+        run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=container --parallel=2
