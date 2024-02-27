@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-describe('Start Server', () => {
-  beforeAll(async () => {
-    const 
-  })
-})
 describe('GET /api', () => {
   it('should return a message', async () => {
     const res = await axios.get(`/api`);
